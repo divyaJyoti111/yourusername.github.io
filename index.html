@@ -4,275 +4,480 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Divya Jyoti — Resume</title>
+  <meta name="description" content="Divya Jyoti — Reporting Analyst | Data Analyst. MIS reporting, dashboards, SQL, Excel automation." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      min-height: 100vh;
+    :root{
+      --bg1:#0f172a;         /* slate-900 */
+      --bg2:#1e1b4b;         /* indigo-950-ish */
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;       /* slate-600 */
+      --line:rgba(15,23,42,0.10);
+      --accent:#5b7cfa;
+      --accent2:#7c4dff;
+      --shadow1: 0 18px 45px rgba(0,0,0,0.30);
+      --shadow2: 0 10px 22px rgba(0,0,0,0.16);
+      --radius: 18px;
     }
 
-    /* Main resume card */
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: #ffffff;
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(91,124,250,0.45), transparent 60%),
+        radial-gradient(900px 600px at 85% 15%, rgba(124,77,255,0.40), transparent 60%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    /* Subtle 3D background shapes */
+    .blob{
+      position:fixed;
+      inset:auto;
+      width:520px; height:520px;
+      border-radius: 50%;
+      filter: blur(42px);
+      opacity:0.35;
+      z-index:-1;
+      transform: translateZ(0);
+      pointer-events:none;
+    }
+    .blob.one{ left:-120px; top:120px; background: rgba(91,124,250,0.75); }
+    .blob.two{ right:-160px; top:40px; background: rgba(124,77,255,0.70); }
+    .blob.three{ right:10%; bottom:-220px; background: rgba(56,189,248,0.55); }
+
+    .wrap{
+      max-width: 980px;
+      margin: 38px auto;
+      padding: 0 18px 60px;
+    }
+
+    /* Glass + depth card */
+    .card{
+      position:relative;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.92);
+      box-shadow: var(--shadow1);
+      border: 1px solid rgba(255,255,255,0.55);
+      overflow:hidden;
+      transform-style: preserve-3d;
+    }
+
+    /* Top sheen */
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(900px 240px at 20% 0%, rgba(91,124,250,0.18), transparent 60%),
+        radial-gradient(900px 240px at 85% 0%, rgba(124,77,255,0.14), transparent 60%);
+      pointer-events:none;
+    }
+
+    .header{
+      display:flex;
+      gap:22px;
+      align-items:center;
+      padding: 28px 28px 18px;
+      border-bottom: 1px solid var(--line);
+      position:relative;
+    }
+
+    .avatar{
+      width: 140px;
+      height: 140px;
       border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-    }
-
-    /* Header */
-    .header {
-      display: flex;
-      gap: 25px;
-      align-items: center;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 20px;
-    }
-
-    /* Profile photo */
-    .profile-pic {
-      width: 150px;
-      height: 150px;
       object-fit: cover;
+      border: 3px solid rgba(91,124,250,0.55);
+      box-shadow: 0 18px 30px rgba(0,0,0,0.20);
+      background:#fff;
+      flex: 0 0 auto;
+      transform: translateZ(18px);
+    }
+
+    .title h1{
+      margin:0;
+      font-size: 32px;
+      letter-spacing: 0.6px;
+      line-height:1.1;
+    }
+
+    .role{
+      margin: 8px 0 10px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .meta{
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin:0;
+    }
+
+    .meta a{
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(71,85,105,0.6);
+    }
+    .meta a:hover{ border-bottom-style:solid; }
+
+    .actions{
+      margin-top: 12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 10px 14px;
       border-radius: 12px;
-      border: 4px solid #667eea;
-      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration:none;
+      border: 1px solid rgba(15,23,42,0.10);
+      background: rgba(255,255,255,0.80);
+      box-shadow: var(--shadow2);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+    .btn.primary{
+      color: #fff;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 14px 28px rgba(91,124,250,0.30);
+    }
+    .btn:hover{ transform: translateY(-2px); }
+    .btn.primary:hover{ box-shadow: 0 18px 36px rgba(91,124,250,0.38); }
+
+    .content{
+      padding: 18px 28px 30px;
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+    }
+
+    .panel{
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(15,23,42,0.08);
+      border-radius: 16px;
+      padding: 16px 16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      transform: translateZ(0);
+    }
+
+    .panel h2{
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing: 0.2px;
+      color: #1f2a44;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .panel h2::before{
+      content:"";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 6px 14px rgba(91,124,250,0.35);
       flex: 0 0 auto;
     }
 
-    /* Name */
-    .header h1 {
-      margin: 0;
-      font-size: 32px;
-      color: #333;
-      letter-spacing: 0.5px;
-    }
-
-    .subtitle {
-      margin: 6px 0 10px;
-      font-weight: 500;
-      color: #555;
-    }
-
-    .contact {
+    .summary{
+      margin:0;
+      color: #1f2a44;
       font-size: 14px;
-      color: #666;
-      margin: 0;
-      line-height: 1.5;
+      line-height: 1.75;
     }
 
-    .contact a {
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px dotted rgba(0,0,0,0.25);
+    .job{
+      padding: 12px 12px;
+      border-radius: 14px;
+      background: rgba(241,245,249,0.55);
+      border: 1px solid rgba(15,23,42,0.06);
+      margin-top: 10px;
     }
-    .contact a:hover { border-bottom-style: solid; }
+    .job:first-of-type{ margin-top: 0; }
 
-    .muted {
-      color: #777;
-      font-size: 13px;
-      margin-left: 8px;
-      white-space: nowrap;
-    }
-
-    /* Download button */
-    .download-btn {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 10px 18px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
-      transition: transform 0.12s ease-in-out;
-    }
-    .download-btn:hover { transform: translateY(-2px); }
-
-    /* Sections */
-    section { margin-top: 25px; }
-
-    section h2 {
-      color: #667eea;
-      border-left: 5px solid #667eea;
-      padding-left: 10px;
-      margin: 0 0 10px;
-    }
-
-    /* Skills chips */
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .skills li {
-      background: #f1f3ff;
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 14px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    /* Job cards */
-    .job {
-      background: #f9f9ff;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    }
-
-    .job-title {
-      margin: 0 0 8px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    .job .top{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px 10px;
       align-items: baseline;
+      margin:0 0 8px;
     }
 
-    .job-title strong { color: #222; }
+    .job .top strong{ font-size: 14px; }
+    .job .where{ color: var(--muted); font-size: 13px; }
+    .job .when{ color: var(--muted); font-size: 12.5px; }
 
-    .job ul {
-      margin: 10px 0 0 18px;
+    ul{
+      margin: 8px 0 0 18px;
+      padding: 0;
+      color:#1f2a44;
+      font-size: 13.5px;
+      line-height: 1.7;
     }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      margin-top: 30px;
+    .chips{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .chips li{
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(91,124,250,0.08);
+      border: 1px solid rgba(91,124,250,0.18);
       font-size: 13px;
-      color: #777;
+      color:#1f2a44;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+    }
+
+    .kv{
+      margin:0;
+      color:#1f2a44;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .kv .label{ color: var(--muted); }
+
+    .projects p{
+      margin: 0 0 8px;
+      color:#1f2a44;
+      font-size: 13.5px;
+      line-height: 1.65;
+    }
+
+    .project-links{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top: 10px;
+    }
+
+    .project-links a{
+      display:block;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.90);
+      border: 1px solid rgba(15,23,42,0.10);
+      text-decoration:none;
+      color:#1f2a44;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      transition: transform 0.12s ease;
+    }
+    .project-links a:hover{ transform: translateY(-2px); }
+
+    .note{
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    footer{
+      color: rgba(255,255,255,0.75);
+      font-size: 13px;
+      text-align:center;
+      margin-top: 14px;
+    }
+
+    /* Subtle tilt on hover (desktop) */
+    @media (hover:hover) and (pointer:fine){
+      .card{
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+      }
+      .card:hover{
+        transform: perspective(1000px) rotateX(1.2deg) rotateY(-1.2deg) translateY(-2px);
+        box-shadow: 0 28px 70px rgba(0,0,0,0.34);
+      }
+    }
+
+    /* Responsive layout */
+    @media (max-width: 900px){
+      .content{
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px){
+      .header{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .avatar{ width:120px; height:120px; }
+      .title h1{ font-size: 28px; }
+    }
+
+    /* Print (optional but useful) */
+    @media print{
+      body{ background:#fff; }
+      .blob, footer{ display:none; }
+      .wrap{ margin:0; padding:0; }
+      .card{ box-shadow:none; border: 1px solid #ddd; }
+      .btn{ display:none; }
+      .panel{ box-shadow:none; }
     }
   </style>
 </head>
 
 <body>
-  <main class="container">
-    <header class="header">
-      <img src="IMG_3441.jpeg" alt="Divya Jyoti" class="profile-pic">
+  <div class="blob one"></div>
+  <div class="blob two"></div>
+  <div class="blob three"></div>
 
-      <div>
-        <h1>DIVYA JYOTI</h1>
-        <p class="subtitle">Reporting Analyst | Data Analyst</p>
+  <div class="wrap">
+    <main class="card" aria-label="Resume">
+      <header class="header">
+        <img src="IMG_3441.jpeg" alt="Divya Jyoti" class="avatar" />
 
-        <p class="contact">
-          Traverse City, MI, USA<br>
-          <span aria-label="Email">Email:</span>
-          <a href="mailto:divya111jyoti@gmail.com">divya111jyoti@gmail.com</a>
-          &nbsp;|&nbsp;
-          <span aria-label="Phone">Phone:</span>
-          <a href="tel:+17063082490">706-308-2490</a><br>
-          LinkedIn:
-          <a href="https://www.linkedin.com/in/divya111" target="_blank" rel="noopener">linkedin.com/in/divya111</a>
-        </p>
+        <div class="title">
+          <h1>DIVYA JYOTI</h1>
+          <p class="role">Reporting Analyst | Data Analyst</p>
 
-        <a href="DivyaJyoti.pdf" download class="download-btn">
-          Download Resume (PDF)
-        </a>
-      </div>
-    </header>
+          <p class="meta">
+            Traverse City, MI, USA<br>
+            Email: <a href="mailto:divya111jyoti@gmail.com">divya111jyoti@gmail.com</a>
+            &nbsp;|&nbsp;
+            Phone: <a href="tel:+17063082490">706-308-2490</a><br>
+            LinkedIn: <a href="https://www.linkedin.com/in/divya111" target="_blank" rel="noopener">linkedin.com/in/divya111</a>
+          </p>
 
-    <section>
-      <h2>Summary</h2>
-      <p>
-        Detail-oriented Reporting Analyst with 3+ years of experience in MIS reporting, data validation,
-        and dashboard preparation. Strong background in financial and operational reporting, SQL queries,
-        Excel automation and stakeholder communication.
-      </p>
-    </section>
+          <div class="actions">
+            <a class="btn primary" href="DivyaJyoti.pdf" download>Download Resume (PDF)</a>
+            <a class="btn" href="#projects">Projects</a>
+            <a class="btn" href="#skills">Skills</a>
+          </div>
+        </div>
+      </header>
 
-    <section>
-      <h2>Work Experience</h2>
+      <section class="content">
+        <!-- Left column -->
+        <div class="panel">
+          <h2>Professional Summary</h2>
+          <p class="summary">
+            Detail-oriented Reporting Analyst with 3+ years of experience in MIS reporting, data validation, and dashboard preparation.
+            Strong foundation in financial and operational reporting, SQL querying, advanced Excel automation, and stakeholder communication.
+          </p>
+        </div>
 
-      <div class="job">
-        <p class="job-title">
-          <strong>Finance Banker</strong> — Huntington National Bank, USA
-          <span class="muted">May 2025 – December 2025</span>
-        </p>
-        <ul>
-          <li>Delivered personalized financial guidance to clients, strengthening relationships and product adoption.</li>
-          <li>Promoted digital banking tools (mobile app, online banking, e-statements), improving engagement by 30%.</li>
-          <li>Maintained up-to-date knowledge of banking regulations and internal compliance procedures.</li>
-          <li>Identified customer needs and recommended solutions across checking, savings, credit, and investment products.</li>
-          <li>Handled high-volume cash transactions accurately and securely, ensuring 100% audit compliance.</li>
-          <li>Supported client onboarding and retention in a goal-driven branch environment.</li>
-        </ul>
-      </div>
+        <div class="panel">
+          <h2>Education</h2>
+          <p class="kv"><span class="label">Master in Computer Application</span><br>Ambala, Haryana — May 2015</p>
+          <p class="kv" style="margin-top:10px;"><span class="label">Bachelor in Computer Application</span><br>Patna, Bihar — March 2010</p>
+        </div>
 
-      <div class="job">
-        <p class="job-title">
-          <strong>Process Executive</strong> — Cognizant Technology Solutions, India
-          <span class="muted">August 2015 – February 2016</span>
-        </p>
-        <ul>
-          <li>Managed large-scale data intake and processing to deliver accurate outputs on schedule.</li>
-          <li>Collaborated with cross-functional teams in Agile ceremonies (planning, grooming, stand-ups, reviews, retrospectives).</li>
-          <li>Partnered with Product Owners to classify and route business-critical documents for faster decision-making.</li>
-          <li>Streamlined workflows using documentation and data analysis, improving operational efficiency and accuracy.</li>
-        </ul>
-      </div>
-    </section>
+        <div class="panel" style="grid-column: 1 / -1;">
+          <h2>Work Experience</h2>
 
-    <section>
-      <h2>Projects</h2>
-      <ul>
-        <li><strong>Sales and Finance Dashboard</strong></li>
-        <li><strong>Banking / Finance Customer & Transaction Analysis</strong></li>
-        <li><strong>Fraud Detection Dashboard</strong></li>
-      </ul>
-    </section>
+          <div class="job">
+            <p class="top">
+              <strong>Finance Banker</strong>
+              <span class="where">Huntington National Bank, USA</span>
+              <span class="when">May 2025 – December 2025</span>
+            </p>
+            <ul>
+              <li>Provided customer-focused financial guidance and recommended solutions across checking, savings, credit, and investment products.</li>
+              <li>Promoted digital banking tools (mobile app, online banking, e-statements), improving client engagement by 30%.</li>
+              <li>Executed high-volume transactions with accuracy and security, maintaining 100% audit compliance.</li>
+              <li>Supported onboarding and retention through follow-up, issue resolution, and proactive service in a goal-driven environment.</li>
+              <li>Maintained working knowledge of banking regulations and internal compliance procedures.</li>
+            </ul>
+          </div>
 
-    <section>
-      <h2>Skills</h2>
-      <ul class="skills">
-        <li>MIS & Management Reporting</li>
-        <li>Advanced Excel (VLOOKUP, XLOOKUP, Pivot Tables, Macros)</li>
-        <li>SQL (Joins, Aggregations)</li>
-        <li>Power BI / Tableau</li>
-        <li>Data Validation & Reconciliation</li>
-        <li>KPI & Performance Reports</li>
-        <li>Banking & Finance Reporting</li>
-      </ul>
-    </section>
+          <div class="job">
+            <p class="top">
+              <strong>Process Executive</strong>
+              <span class="where">Cognizant Technology Solutions, India</span>
+              <span class="when">August 2015 – February 2016</span>
+            </p>
+            <ul>
+              <li>Managed large-scale data intake and processing to deliver accurate outputs within SLAs.</li>
+              <li>Classified, sorted, and routed business-critical documents to improve access to key information and decision-making speed.</li>
+              <li>Collaborated in Agile ceremonies (planning, grooming, stand-ups, reviews, retrospectives) to improve delivery throughput.</li>
+              <li>Improved workflow efficiency through structured documentation and data quality checks, reducing rework and processing errors.</li>
+            </ul>
+          </div>
+        </div>
 
-    <section>
-      <h2>Education</h2>
-      <p>
-        Master's in Computer Application
-        <span class="muted">Ambala, Haryana — May 2015</span>
-      </p>
-      <p>
-        Bachelor's in Computer Application
-        <span class="muted">Patna, Bihar — March 2010</span>
-      </p>
-    </section>
+        <div id="skills" class="panel">
+          <h2>Skills</h2>
+          <ul class="chips">
+            <li>MIS & Management Reporting</li>
+            <li>Advanced Excel (VLOOKUP, XLOOKUP, Pivot Tables, Macros)</li>
+            <li>SQL (Joins, Aggregations)</li>
+            <li>Power BI / Tableau</li>
+            <li>Data Validation & Reconciliation</li>
+            <li>KPI & Performance Reporting</li>
+            <li>Banking & Finance Reporting</li>
+          </ul>
+        </div>
 
-    <section>
-      <h2>Certifications</h2>
-      <ul class="certifications">
-        <li>AWS Certified Developer</li>
-        <li>Full-Stack Web Developer Certification (Meta)</li>
-        <li>Python for Data Science</li>
-        <li>3D Modeling (University of Michigan)</li>
-        <li>Better Scrum (Stay Amazing)</li>
-        <li>Secure Programming in Android</li>
-      </ul>
-    </section>
+        <div class="panel">
+          <h2>Certifications</h2>
+          <ul>
+            <li>AWS Certified Developer</li>
+            <li>Full-Stack Web Developer Certification (Meta)</li>
+            <li>Python for Data Science</li>
+            <li>3D Modeling (University of Michigan)</li>
+            <li>Better Scrum (Stay Amazing)</li>
+            <li>Secure Programming in Android</li>
+          </ul>
+        </div>
 
-    <footer>
-      <p>© 2026 Divya Jyoti | Resume</p>
-    </footer>
-  </main>
+        <div id="projects" class="panel projects" style="grid-column: 1 / -1;">
+          <h2>Projects (PPT Decks)</h2>
+          <p>
+            Use the links below to open or download detailed project slide decks. If you want to embed the decks directly,
+            upload them to Google Slides or OneDrive and replace these links with embed links.
+          </p>
+
+          <div class="project-links">
+            <a href="Sales_Finance_Dashboard.pptx" download>
+              <strong>Sales and Finance Dashboard</strong><br>
+              <span class="note">Download PPT</span>
+            </a>
+
+            <a href="Banking_Transaction_Analysis.pptx" download>
+              <strong>Banking / Finance Customer & Transaction Analysis</strong><br>
+              <span class="note">Download PPT</span>
+            </a>
+
+            <a href="Fraud_Detection_Dashboard.pptx" download>
+              <strong>Fraud Detection Dashboard</strong><br>
+              <span class="note">Download PPT</span>
+            </a>
+          </div>
+
+          <p class="note">
+            Tip: Keep a 1–2 line summary here for ATS and fast scanning, even if the deck contains full detail.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>© 2026 Divya Jyoti | Resume</footer>
+  </div>
 </body>
 </html>
 
+
+    
+ 
