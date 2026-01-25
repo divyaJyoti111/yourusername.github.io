@@ -10,138 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-
-    <style>
-  /* AI Divya widget (minimal, matches your clean card style) */
-  .ai-divya-launcher{
-    position: fixed; right: 18px; bottom: 18px;
-    border: none; border-radius: 999px;
-    padding: 12px 14px;
-    font-weight: 600;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.22);
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #fff;
-    cursor: pointer;
-    z-index: 9999;
-  }
-  .ai-divya-panel{
-    position: fixed; right: 18px; bottom: 72px;
-    width: min(380px, calc(100vw - 36px));
-    height: 520px;
-    background: rgba(255,255,255,0.95);
-    border: 1px solid rgba(15,23,42,0.12);
-    border-radius: 16px;
-    box-shadow: 0 22px 60px rgba(0,0,0,0.28);
-    display: none;
-    overflow: hidden;
-    z-index: 9999;
-  }
-  .ai-divya-header{
-    display:flex; align-items:center; justify-content:space-between;
-    padding: 12px 12px;
-    border-bottom: 1px solid rgba(15,23,42,0.10);
-  }
-  .ai-divya-title{ font-weight: 700; font-size: 14px; color: #0f172a; }
-  .ai-divya-close{
-    border: none; background: transparent; cursor: pointer;
-    font-size: 18px; line-height: 1; color: #334155;
-  }
-  .ai-divya-messages{
-    padding: 12px;
-    height: 392px;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .ai-msg{
-    max-width: 86%;
-    padding: 10px 12px;
-    border-radius: 14px;
-    font-size: 13.5px;
-    line-height: 1.55;
-    border: 1px solid rgba(15,23,42,0.08);
-  }
-  .ai-msg.user{ margin-left:auto; background: rgba(91,124,250,0.10); }
-  .ai-msg.bot{ margin-right:auto; background: rgba(241,245,249,0.75); }
-  .ai-divya-footer{
-    border-top: 1px solid rgba(15,23,42,0.10);
-    padding: 10px 10px;
-    display: flex;
-    gap: 8px;
-  }
-  .ai-divya-input{
-    flex:1;
-    border-radius: 12px;
-    border: 1px solid rgba(15,23,42,0.14);
-    padding: 10px 10px;
-    font-family: inherit;
-    font-size: 13.5px;
-    outline: none;
-  }
-  .ai-divya-send{
-    border: none;
-    border-radius: 12px;
-    padding: 10px 12px;
-    font-weight: 700;
-    cursor: pointer;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #fff;
-  }
-  .ai-divya-quick{
-    padding: 0 12px 12px;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .ai-pill{
-    border: 1px solid rgba(15,23,42,0.12);
-    background: rgba(255,255,255,0.8);
-    border-radius: 999px;
-    padding: 8px 10px;
-    font-size: 12.5px;
-    cursor: pointer;
-  }
-
-<button class="ai-divya-launcher" id="aiDivyaOpen">Chat with AI Divya</button>
-
-<div class="ai-divya-panel" id="aiDivyaPanel" role="dialog" aria-label="AI Divya Chat">
-  <div class="ai-divya-header">
-    <div class="ai-divya-title">AI Divya (Resume Assistant)</div>
-    <button class="ai-divya-close" id="aiDivyaClose" aria-label="Close">×</button>
-  </div>
-
-  <div class="ai-divya-messages" id="aiDivyaMessages"></div>
-
-  <div class="ai-divya-quick">
-    <button class="ai-pill" data-q="Summarize Divya’s experience in 4 bullets.">Experience summary</button>
-    <button class="ai-pill" data-q="What are Divya’s strongest reporting/analytics skills?">Core skills</button>
-    <button class="ai-pill" data-q="Which projects should I review first and why?">Projects</button>
-    <button class="ai-pill" data-q="How can I contact Divya?">Contact</button>
-  </div>
-
-  <form class="ai-divya-footer" id="aiDivyaForm">
-    <input class="ai-divya-input" id="aiDivyaInput" placeholder="Ask about Divya’s skills, projects, experience…" />
-    <button class="ai-divya-send" type="submit">Send</button>
-  </form>
-</div>
-
-<script>
-  // IMPORTANT: set this to your deployed Worker endpoint:
-  const AI_DIVYA_API = "https://YOUR-WORKER-SUBDOMAIN.workers.dev/chat";
-
-  const panel = document.getElementById("aiDivyaPanel");
-  const openBtn = document.getElementById("aiDivyaOpen");
-  const closeBtn = document.getElementById("aiDivyaClose");
-  const form = document.getElementById("aiDivyaForm");
-  const input = document.getElementById("aiDivyaInput");
-  const messagesEl = document.getElementById("aiDivyaMessages");
-
-  const history = []; // {role: 'user'|'assistant', content: string}
-
-  function addMsg(role, text){
-    const div = document.create
-    : root{
+  <style>
+    :root{
       --bg1:#0f172a;         /* slate-900 */
       --bg2:#1e1b4b;         /* indigo-950-ish */
       --card:#ffffff;
@@ -157,6 +27,7 @@
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
+
     body{
       margin:0;
       font-family:'Poppins',system-ui,-apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -171,7 +42,6 @@
     /* Subtle 3D background shapes */
     .blob{
       position: fixed;
-      inset: auto;
       width:520px; height:520px;
       border-radius: 50%;
       filter: blur(42px);
@@ -281,6 +151,7 @@
       background: rgba(255,255,255,0.80);
       box-shadow: var(--shadow2);
       transition: transform 0.12s ease, box-shadow 0.12s ease;
+      color: #1f2a44;
     }
     .btn.primary{
       color: #fff;
@@ -442,28 +313,132 @@
 
     /* Responsive layout */
     @media (max-width: 900px){
-      .content{
-        grid-template-columns: 1fr;
-      }
+      .content{ grid-template-columns: 1fr; }
     }
-
     @media (max-width: 720px){
-      .header{
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      .header{ flex-direction: column; align-items: flex-start; }
       .avatar{ width:120px; height:120px; }
       .title h1{ font-size: 28px; }
     }
 
-    /* Print (optional but useful) */
+    /* Print */
     @media print{
       body{ background:#fff; }
-      .blob, footer{ display:none; }
+      .blob, footer, .ai-divya-launcher, .ai-divya-panel{ display:none !important; }
       .wrap{ margin:0; padding:0; }
       .card{ box-shadow:none; border: 1px solid #ddd; }
       .btn{ display:none; }
       .panel{ box-shadow:none; }
+    }
+
+    /* ===============================
+       AI Divya widget (minimal)
+       =============================== */
+    .ai-divya-launcher{
+      position: fixed; right: 18px; bottom: 18px;
+      border: none; border-radius: 999px;
+      padding: 12px 14px;
+      font-weight: 600;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.22);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      cursor: pointer;
+      z-index: 9999;
+    }
+    .ai-divya-panel{
+      position: fixed; right: 18px; bottom: 72px;
+      width: min(380px, calc(100vw - 36px));
+      height: 520px;
+      background: rgba(255,255,255,0.95);
+      border: 1px solid rgba(15,23,42,0.12);
+      border-radius: 16px;
+      box-shadow: 0 22px 60px rgba(0,0,0,0.28);
+      display: none;
+      overflow: hidden;
+      z-index: 9999;
+      color: #0f172a;
+    }
+    .ai-divya-header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 12px;
+      border-bottom: 1px solid rgba(15,23,42,0.10);
+    }
+    .ai-divya-title{ font-weight: 700; font-size: 14px; color: #0f172a; }
+    .ai-divya-close{
+      border: none; background: transparent; cursor: pointer;
+      font-size: 18px; line-height: 1; color: #334155;
+    }
+    .ai-divya-messages{
+      padding: 12px;
+      height: 352px;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .ai-msg{
+      max-width: 86%;
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-size: 13.5px;
+      line-height: 1.55;
+      border: 1px solid rgba(15,23,42,0.08);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .ai-msg.user{ margin-left:auto; background: rgba(91,124,250,0.10); }
+    .ai-msg.bot{ margin-right:auto; background: rgba(241,245,249,0.75); }
+
+    .ai-divya-footer{
+      border-top: 1px solid rgba(15,23,42,0.10);
+      padding: 10px 10px;
+      display: flex;
+      gap: 8px;
+      background: rgba(255,255,255,0.9);
+    }
+    .ai-divya-input{
+      flex:1;
+      border-radius: 12px;
+      border: 1px solid rgba(15,23,42,0.14);
+      padding: 10px 10px;
+      font-family: inherit;
+      font-size: 13.5px;
+      outline: none;
+    }
+    .ai-divya-send{
+      border: none;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+    }
+
+    .ai-divya-quick{
+      padding: 10px 12px 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(15,23,42,0.06);
+      background: rgba(255,255,255,0.9);
+    }
+    .ai-pill{
+      border: 1px solid rgba(15,23,42,0.12);
+      background: rgba(255,255,255,0.8);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 12.5px;
+      cursor: pointer;
+    }
+    .ai-pill:hover{ transform: translateY(-1px); }
+
+    .ai-divya-status{
+      padding: 8px 12px;
+      font-size: 12px;
+      color: #64748b;
+      border-top: 1px solid rgba(15,23,42,0.06);
+      background: rgba(255,255,255,0.9);
     }
   </style>
 </head>
@@ -605,9 +580,156 @@
 
     <footer>© 2026 Divya Jyoti | Resume</footer>
   </div>
+
+  <!-- ===============================
+       AI Divya Widget HTML (BODY)
+       =============================== -->
+  <button class="ai-divya-launcher" id="aiDivyaOpen" type="button">Chat with AI Divya</button>
+
+  <div class="ai-divya-panel" id="aiDivyaPanel" role="dialog" aria-label="AI Divya Chat" aria-modal="false">
+    <div class="ai-divya-header">
+      <div class="ai-divya-title">AI Divya (Resume Assistant)</div>
+      <button class="ai-divya-close" id="aiDivyaClose" type="button" aria-label="Close">×</button>
+    </div>
+
+    <div class="ai-divya-messages" id="aiDivyaMessages"></div>
+
+    <div class="ai-divya-quick">
+      <button class="ai-pill" type="button" data-q="Summarize Divya’s experience in 4 bullets.">Experience summary</button>
+      <button class="ai-pill" type="button" data-q="What are Divya’s strongest reporting/analytics skills?">Core skills</button>
+      <button class="ai-pill" type="button" data-q="Which projects should I review first and why?">Projects</button>
+      <button class="ai-pill" type="button" data-q="How can I contact Divya?">Contact</button>
+    </div>
+
+    <div class="ai-divya-status" id="aiDivyaStatus">Ready</div>
+
+    <form class="ai-divya-footer" id="aiDivyaForm" autocomplete="off">
+      <input class="ai-divya-input" id="aiDivyaInput" placeholder="Ask about Divya’s skills, projects, experience…" />
+      <button class="ai-divya-send" type="submit" id="aiDivyaSend">Send</button>
+    </form>
+  </div>
+
+  <!-- ===============================
+       AI Divya Widget JS (VALID)
+       =============================== -->
+  <script>
+    // IMPORTANT: set this to your deployed Worker endpoint:
+    const AI_DIVYA_API = "https://YOUR-WORKER-SUBDOMAIN.workers.dev/chat";
+
+    const panel = document.getElementById("aiDivyaPanel");
+    const openBtn = document.getElementById("aiDivyaOpen");
+    const closeBtn = document.getElementById("aiDivyaClose");
+    const form = document.getElementById("aiDivyaForm");
+    const input = document.getElementById("aiDivyaInput");
+    const messagesEl = document.getElementById("aiDivyaMessages");
+    const statusEl = document.getElementById("aiDivyaStatus");
+    const sendBtn = document.getElementById("aiDivyaSend");
+    const quickBtns = document.querySelectorAll(".ai-pill");
+
+    const history = []; // {role: 'user'|'assistant', content: string}
+
+    function setStatus(text){
+      if (statusEl) statusEl.textContent = text;
+    }
+
+    function addMsg(role, text){
+      const div = document.createElement("div");
+      div.className = "ai-msg " + (role === "user" ? "user" : "bot");
+      div.textContent = text;
+      messagesEl.appendChild(div);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function setOpen(isOpen){
+      panel.style.display = isOpen ? "block" : "none";
+      if (isOpen) input.focus();
+    }
+
+    async function sendToApi(userText){
+      // Basic guard: if endpoint not configured, fail fast with helpful message
+      if (!AI_DIVYA_API || AI_DIVYA_API.includes("YOUR-WORKER-SUBDOMAIN")){
+        addMsg("bot", "AI endpoint is not configured yet. Update AI_DIVYA_API in the script to your Worker URL.");
+        return;
+      }
+
+      setStatus("Sending…");
+      sendBtn.disabled = true;
+      input.disabled = true;
+
+      history.push({ role: "user", content: userText });
+
+      try{
+        const res = await fetch(AI_DIVYA_API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            messages: history
+          })
+        });
+
+        if (!res.ok){
+          const txt = await res.text().catch(() => "");
+          throw new Error("API error " + res.status + (txt ? (": " + txt) : ""));
+        }
+
+        const data = await res.json();
+
+        // Support common response shapes:
+        // 1) { reply: "..." }
+        // 2) { message: "..." }
+        // 3) OpenAI-like { choices:[{message:{content:"..."}}] }
+        let reply =
+          (data && typeof data.reply === "string" && data.reply) ||
+          (data && typeof data.message === "string" && data.message) ||
+          (data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) ||
+          "";
+
+        if (!reply) reply = "Received a response, but it did not include a readable reply text.";
+
+        history.push({ role: "assistant", content: reply });
+        addMsg("bot", reply);
+        setStatus("Ready");
+      } catch(err){
+        addMsg("bot", "Error: " + (err && err.message ? err.message : String(err)));
+        setStatus("Error");
+      } finally{
+        sendBtn.disabled = false;
+        input.disabled = false;
+        input.focus();
+      }
+    }
+
+    openBtn.addEventListener("click", () => {
+      setOpen(true);
+      if (messagesEl.children.length === 0){
+        addMsg("bot", "Hi—ask me anything about Divya’s resume: skills, experience, projects, or contact details.");
+      }
+    });
+
+    closeBtn.addEventListener("click", () => setOpen(false));
+
+    // Optional: close with Esc
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && panel.style.display === "block") setOpen(false);
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const text = (input.value || "").trim();
+      if (!text) return;
+      input.value = "";
+      addMsg("user", text);
+      await sendToApi(text);
+    });
+
+    quickBtns.forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const q = btn.getAttribute("data-q");
+        if (!q) return;
+        addMsg("user", q);
+        await sendToApi(q);
+      });
+    });
+  </script>
 </body>
 </html>
-
-
-    
- 
